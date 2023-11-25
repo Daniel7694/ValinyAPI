@@ -31,13 +31,13 @@ namespace Valiny.Controllers
 
         // GET api/<EstudiantesController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Supplier>> Get(int id)
+        public async Task<ActionResult<Estudiante>> Get(int id)
         {
-            if (_context.Suppliers == null)
+            if (_context.Estudiantes == null)
             {
                 return NotFound();
             }
-            var supplier = await _context.Suppliers.FindAsync(id);
+            var supplier = await _context.Estudiantes.FindAsync(id);
 
             if (supplier is null)
             {
