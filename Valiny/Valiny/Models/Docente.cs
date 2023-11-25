@@ -1,6 +1,6 @@
 ﻿namespace Valiny.Models
 {
-    public class Docentes
+    public class Docente : Orientador
     {
     }
 }
