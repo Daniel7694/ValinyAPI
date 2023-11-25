@@ -8,6 +8,6 @@ namespace Valiny.Models
         [Key]
         [MaxLength(1)]
         public int ID_Curso {  get; set; } 
-        public int Num_Curso { get; set; }
+        public string Num_Curso { get; set; }
     }
 }
