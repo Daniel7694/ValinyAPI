@@ -4,10 +4,13 @@ namespace Valiny.Models
 {
     public class Registro
     {
+        [MaxLength(10)]
         public int RegistroId { get; set; }
+        [MaxLength(10)]
         public int TiposRegistroId { get; set; }
-        public int T_DocumentoId { get; set; }
+        [MaxLength(10)]
         public int MatriculaId { get; set; }
+        [MaxLength(10)]
         public int AdministrativoId { get; set; }
         public DateTime Fecha { get; set; }
 
