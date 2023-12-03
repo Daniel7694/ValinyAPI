@@ -31,20 +31,20 @@ namespace Valiny.Controllers
 
         // GET api/<EstudiantesController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Estudiante>> Get(int ID_Estudiante)
+        public async Task<ActionResult<Estudiante>> Get(int EstudianteId)
         {
             if (_context.Estudiantes == null)
             {
                 return NotFound();
             }
-            var supplier = await _context.Estudiantes.FindAsync(ID_Estudiante);
+            var Estudiante = await _context.Estudiantes.FindAsync(EstudianteId);
 
-            if (supplier is null)
+            if (Estudiante is null)
             {
                 return NotFound();
             }
 
-            return supplier;
+            return Estudiante;
         }
 
         // POST api/<EstudiantesController>
@@ -62,14 +62,56 @@ namespace Valiny.Controllers
 
         // PUT api/<EstudiantesController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> PutAsync(int EstudianteId, [FromBody] Estudiante Estudiante)
         {
+            if (EstudianteId != Estudiante.EstudianteId)
+            {
+                return BadRequest();
+            }
+            _context.Entry(Estudiante).State = EntityState.Modified;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+
+                if (!EstudianteExists(EstudianteId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            return NoContent();
+        }
+
+        private bool EstudianteExists(int estudianteId)
+        {
+            throw new NotImplementedException();
         }
 
         // DELETE api/<EstudiantesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int estudianteId)
         {
+            if (_context.Estudiantes is null)
+            {
+                return NotFound();
+            }
+
+            var Estudiante = await _context.Estudiantes.FirstOrDefaultAsync(s => s.EstudianteId == estudianteId);
+            if (Estudiante == null)
+            {
+                return NotFound();
+            }
+
+            _context.Estudiantes.Remove(Estudiante);
+            await _context.SaveChangesAsync();
+            return NoContent();
+
         }
     }
 }

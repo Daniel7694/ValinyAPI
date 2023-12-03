@@ -19,10 +19,10 @@ namespace Valiny.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     P_Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     S_Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    T_Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     P_Apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     S_Apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    T_Documento = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FechaNacimiento = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    T_Documento = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,10 +65,10 @@ namespace Valiny.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     P_Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     S_Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    T_Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     P_Apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     S_Apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    T_Documento = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FechaNacimiento = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    T_Documento = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -5,9 +5,12 @@ namespace Valiny.Models
 {
     public class Matricula
     {
+        [MaxLength(10)]
         public int MatriculaId { get; set; }
         public DateTime? Fecha { get; set; }
+        [MaxLength(10)]
         public int EstudianteId { get; set; }
+        [MaxLength(10)]
         public int CursoId { get; set; }
 
         public virtual Estudiante Estudiante { get; set; }
