@@ -5,9 +5,10 @@ namespace Valiny.Models
 {
     public class Curso
     {
-        [Key]
-        [MaxLength(1)]
-        public int ID_Curso {  get; set; } 
-        public string Num_Curso { get; set; }
+        public int CursoId { get; set; }
+        public string Nombre { get; set; }
+        public bool Estado { get; set; }
+
+        public virtual ICollection<Matricula> Matricula { get; set; }
     }
 }

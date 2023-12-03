@@ -4,9 +4,10 @@ namespace Valiny.Models
 {
     public class Rol
     {
-        [Key]
-        [MaxLength(1)]
-        public int ID_Rol {  get; set; }
-        public string Nombre_Rol { get; set; }
+        public int RolId { get; set; }
+        public string NombreRol { get; set; }
+        public bool Estado { get; set; }
+
+        public virtual ICollection<AdministrativoRol> AdministrativoRol { get; set; }
     }
 }

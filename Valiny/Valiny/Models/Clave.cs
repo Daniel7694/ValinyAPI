@@ -4,9 +4,11 @@ namespace Valiny.Models
 {
     public class Clave
     {
-        [Key]
-        [MaxLength(1)]
-        public int ID_Clave { get; set; }
+
+        public int ClaveId { get; set; }
         public string Contrasenia { get; set; }
+        public bool Estado { get; set; }
+
+        public virtual ICollection<AdministrativoClave> AdministrativoClave { get; set; }
     }
 }

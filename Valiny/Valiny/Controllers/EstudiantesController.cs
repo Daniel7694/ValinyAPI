@@ -31,13 +31,13 @@ namespace Valiny.Controllers
 
         // GET api/<EstudiantesController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Estudiante>> Get(int id)
+        public async Task<ActionResult<Estudiante>> Get(int ID_Estudiante)
         {
             if (_context.Estudiantes == null)
             {
                 return NotFound();
             }
-            var supplier = await _context.Estudiantes.FindAsync(id);
+            var supplier = await _context.Estudiantes.FindAsync(ID_Estudiante);
 
             if (supplier is null)
             {
@@ -49,8 +49,15 @@ namespace Valiny.Controllers
 
         // POST api/<EstudiantesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult<Estudiante>> Post([FromBody] Estudiante Estudiante)
         {
+            if (_context.Estudiantes == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Estudiantes'  is null.");
+            }
+            _context.Estudiantes.Add(Estudiante);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("Get", new { EstudianteId = Estudiante.EstudianteId }, Estudiante);
         }
 
         // PUT api/<EstudiantesController>/5

@@ -13,14 +13,62 @@ namespace Valiny.Data
         public DbSet<Administrativo> Administrativos { get; set; }
         public DbSet<Clave> Claves { get; set; }
         public DbSet<Curso> Cursos { get; set; }
-        public DbSet<Directivo> Directivos { get; set; }
-        public DbSet<Docente> Docentes { get; set; }
         public DbSet<Estudiante> Estudiantes { get; set; }
-        public DbSet<Genero> Generos { get; set; }
-        public DbSet<Orientador> Orientadores { get; set; }
         public DbSet<Registro> Registros { get; set; }
         public DbSet<Rol> Rols { get; set; }
-        public DbSet<T_Documento> T_Documentos { get; set; }
 
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Aquí puedes configurar las relaciones y claves foráneas como en tu script SQL
+            // Por ejemplo:
+            modelBuilder.Entity<Registro>()
+                .HasOne(ca => ca.Administrativo)
+                .WithMany(f => f.Registro)
+                .HasForeignKey(ca => ca.AdministrativoId);
+
+            modelBuilder.Entity<Registro>()
+                .HasOne(ca => ca.Matricula)
+                .WithMany(f => f.Registro)
+                .HasForeignKey(ca => ca.MatriculaId);
+
+            modelBuilder.Entity<Registro>()
+                .HasOne(ca => ca.TiposRegistro)
+                .WithMany(f => f.Registro)
+                .HasForeignKey(ca => ca.TiposRegistroId);
+
+            modelBuilder.Entity<AdministrativoRol>()
+                .HasOne(ca => ca.Rol)
+                .WithMany(f => f.AdministrativoRol)
+                .HasForeignKey(ca => ca.RolId);
+
+            modelBuilder.Entity<AdministrativoRol>()
+                .HasOne(ca => ca.Administrativo)
+                .WithMany(f => f.AdministrativoRol)
+                .HasForeignKey(ca => ca.AdministrativoId);
+
+            modelBuilder.Entity<AdministrativoClave>()
+                .HasOne(ca => ca.Clave)
+                .WithMany(f => f.AdministrativoClave)
+                .HasForeignKey(ca => ca.ClaveId);
+
+            modelBuilder.Entity<AdministrativoClave>()
+                .HasOne(ca => ca.Administrativo)
+                .WithMany(f => f.AdministrativoClave)
+                .HasForeignKey(ca => ca.AdministrativoId);
+
+
+            modelBuilder.Entity<Matricula>()
+                .HasOne(ca => ca.Estudiante)
+                .WithMany(f => f.Matricula)
+                .HasForeignKey(ca => ca.EstudianteId);
+
+            modelBuilder.Entity<Matricula>()
+                .HasOne(ca => ca.Curso)
+                .WithMany(f => f.Matricula)
+                .HasForeignKey(ca => ca.CursoId);
+            // ... otras configu
+        }
     }
 }
