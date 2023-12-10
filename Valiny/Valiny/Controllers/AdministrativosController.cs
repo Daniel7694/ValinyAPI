@@ -29,7 +29,7 @@ namespace Valiny.Controllers
         }
 
         // GET api/<AdministrativosController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{AdministrativoId}")]
         public async Task<ActionResult<Administrativo>> Get(int AdministrativoId)
         {
             if (_context.Administrativos == null)
@@ -60,7 +60,7 @@ namespace Valiny.Controllers
         }
 
         // PUT api/<AdministrativosController>/5
-        [HttpPut("{id}")]
+        [HttpPut("{AdministrativoId}")]
         public async Task<IActionResult> PutAsync(int AdministrativoId, [FromBody] Administrativo Administrativo)
         {
             if (AdministrativoId != Administrativo.AdministrativoId)
@@ -93,7 +93,7 @@ namespace Valiny.Controllers
         }
 
         // DELETE api/<AdministrativosController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{AdministrativoId}")]
         public async Task<IActionResult> Delete(int AdministrativoId)
         {
             if (_context.Administrativos is null)

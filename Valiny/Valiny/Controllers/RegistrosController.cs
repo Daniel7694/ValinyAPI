@@ -30,7 +30,7 @@ namespace Valiny.Controllers
         }
 
         // GET api/<RegistrosController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{RegistroId}")]
         public async Task<ActionResult<Registro>> Get(int RegistroId)
         {
             if (_context.Registros == null)
@@ -61,7 +61,7 @@ namespace Valiny.Controllers
         }
 
         // PUT api/<RegistrosController>/5
-        [HttpPut("{id}")]
+        [HttpPut("{RegistroId}")]
         public async Task<IActionResult> PutAsync(int RegistroId, [FromBody] Registro Registro)
         {
             if (RegistroId != Registro.RegistroId)
@@ -94,7 +94,7 @@ namespace Valiny.Controllers
         }
 
         // DELETE api/<RegistrosController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{RegistroId}")]
         public async Task<IActionResult> Delete(int RegistroId)
         {
             if (_context.Registros is null)

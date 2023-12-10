@@ -11,7 +11,7 @@ namespace Valiny.Models
         [MaxLength(10)]
         public string P_Nombre { get; set; }
         [MaxLength(10)]
-        public string S_Nombre { get; set; }
+        public string S_Nombre { get; set; } = string.Empty;
         [MaxLength(10)]
         public string T_Nombre { get; set; } = string.Empty;
         [MaxLength(10)]

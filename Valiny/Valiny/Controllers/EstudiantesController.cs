@@ -30,7 +30,7 @@ namespace Valiny.Controllers
         }
 
         // GET api/<EstudiantesController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{EstudianteId}")]
         public async Task<ActionResult<Estudiante>> Get(int EstudianteId)
         {
             if (_context.Estudiantes == null)
@@ -61,7 +61,7 @@ namespace Valiny.Controllers
         }
 
         // PUT api/<EstudiantesController>/5
-        [HttpPut("{id}")]
+        [HttpPut("{EstudianteId}")]
         public async Task<IActionResult> PutAsync(int EstudianteId, [FromBody] Estudiante Estudiante)
         {
             if (EstudianteId != Estudiante.EstudianteId)
@@ -94,7 +94,7 @@ namespace Valiny.Controllers
         }
 
         // DELETE api/<EstudiantesController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{EstudianteId}")]
         public async Task<IActionResult> Delete(int estudianteId)
         {
             if (_context.Estudiantes is null)
