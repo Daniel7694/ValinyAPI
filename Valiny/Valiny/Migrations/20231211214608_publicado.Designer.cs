@@ -12,7 +12,7 @@ using Valiny.Data;
 namespace Valiny.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231209204635_publicado")]
+    [Migration("20231211214608_publicado")]
     partial class publicado
     {
         /// <inheritdoc />
@@ -28,11 +28,8 @@ namespace Valiny.Migrations
             modelBuilder.Entity("Valiny.Models.Administrativo", b =>
                 {
                     b.Property<int>("AdministrativoId")
-                        .ValueGeneratedOnAdd()
                         .HasMaxLength(10)
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdministrativoId"));
 
                     b.Property<string>("P_Apellido")
                         .IsRequired()
@@ -180,11 +177,8 @@ namespace Valiny.Migrations
             modelBuilder.Entity("Valiny.Models.Estudiante", b =>
                 {
                     b.Property<int>("EstudianteId")
-                        .ValueGeneratedOnAdd()
                         .HasMaxLength(10)
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EstudianteId"));
 
                     b.Property<string>("P_Apellido")
                         .IsRequired()

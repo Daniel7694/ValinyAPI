@@ -6,6 +6,7 @@ namespace Valiny.Models
     public class Administrativo
     {
         [MaxLength (10)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int AdministrativoId { get; set; }
         [MaxLength(10)]
         public string P_Nombre { get; set; }

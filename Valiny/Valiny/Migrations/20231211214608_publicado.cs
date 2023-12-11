@@ -15,8 +15,7 @@ namespace Valiny.Migrations
                 name: "Administrativos",
                 columns: table => new
                 {
-                    AdministrativoId = table.Column<int>(type: "int", maxLength: 10, nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AdministrativoId = table.Column<int>(type: "int", maxLength: 10, nullable: false),
                     P_Nombre = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     S_Nombre = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     T_Nombre = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
@@ -61,8 +60,7 @@ namespace Valiny.Migrations
                 name: "Estudiantes",
                 columns: table => new
                 {
-                    EstudianteId = table.Column<int>(type: "int", maxLength: 10, nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EstudianteId = table.Column<int>(type: "int", maxLength: 10, nullable: false),
                     P_Nombre = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     S_Nombre = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     T_Nombre = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
