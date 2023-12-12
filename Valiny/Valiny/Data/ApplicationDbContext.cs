@@ -1,28 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Valiny.Models;
 
 namespace Valiny.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<AppUser>
+
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
 
         }
-        public DbSet<Administrativo> Administrativos { get; set; }
-        public DbSet<Clave> Claves { get; set; }
-        public DbSet<Curso> Cursos { get; set; }
-        public DbSet<Estudiante> Estudiantes { get; set; }
-        public DbSet<Registro> Registros { get; set; }
-        public DbSet<Rol> Rols { get; set; }
-
-
-
+ 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Aquí puedes configurar las relaciones y claves foráneas como en tu script SQL
             // Por ejemplo:
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Registro>()
                 .HasOne(ca => ca.Administrativo)
                 .WithMany(f => f.Registro)
@@ -70,5 +65,12 @@ namespace Valiny.Data
                 .HasForeignKey(ca => ca.CursoId);
             // ... otras configu
         }
+        public DbSet<Administrativo> Administrativos { get; set; }
+        public DbSet<Clave> Claves { get; set; }
+        public DbSet<Curso> Cursos { get; set; }
+        public DbSet<Estudiante> Estudiantes { get; set; }
+        public DbSet<Registro> Registros { get; set; }
+        public DbSet<Rol> Rols { get; set; }
+        public DbSet<AppUser> AppUser { get; set; }
     }
 }
