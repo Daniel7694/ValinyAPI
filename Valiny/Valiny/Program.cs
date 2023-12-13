@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Valiny.Data;
+using AutoMapper;
+using Valiny.Mappers;
+using Valiny.Repositorio;
+using Valiny.Repositorio.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +15,12 @@ throw new InvalidOperationException("Connection string 'DefaultConnection' not f
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+var key = builder.Configuration.GetValue<String>("ApiSettings:Secreta");
+
+//builder.Services.AddAutoMapper(typeof(ValinyMapper));
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
