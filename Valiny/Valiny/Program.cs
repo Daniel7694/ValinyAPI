@@ -4,6 +4,8 @@ using AutoMapper;
 using Valiny.Mappers;
 using Valiny.Repositorio;
 using Valiny.Repositorio.IRepository;
+using Valiny.Models;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,11 +17,12 @@ throw new InvalidOperationException("Connection string 'DefaultConnection' not f
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 var key = builder.Configuration.GetValue<String>("ApiSettings:Secreta");
 
-//builder.Services.AddAutoMapper(typeof(ValinyMapper));
+builder.Services.AddAutoMapper(typeof(ValinyMapper));
 
 
 builder.Services.AddControllers();

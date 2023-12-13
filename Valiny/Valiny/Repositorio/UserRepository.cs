@@ -32,7 +32,7 @@ namespace Valiny.Repositorio
 
         public async Task<ICollection<UserDTO>> GetAllUsersAsync()
         {
-            var users = _context.AppUser.OrderBy(u => u.UserName).ToList();
+            var users = _context.AppUsers.OrderBy(u => u.UserName).ToList();
             var userDtos = new List<UserDTO>();
 
             foreach (var user in users)
@@ -49,7 +49,7 @@ namespace Valiny.Repositorio
 
         public async Task<UserDTO> GetByIdAsync(string id)
         {
-            var user = await _context.AppUser.FindAsync(id);
+            var user = await _context.AppUsers.FindAsync(id);
             if (user == null)
             {
                 return null;
@@ -65,7 +65,7 @@ namespace Valiny.Repositorio
 
         public bool IsUnique(string userName)
         {
-            var userDb = _context.AppUser.FirstOrDefault(u => u.UserName == userName);
+            var userDb = _context.AppUsers.FirstOrDefault(u => u.UserName == userName);
             if (userDb == null)
             {
                 return true;
@@ -108,7 +108,7 @@ namespace Valiny.Repositorio
             //    User = _mapper.Map<UserDTO>(user)
             //};
 
-            var user = _context.AppUser.FirstOrDefault(u => u.UserName.ToLower() == userLoginDTO.UserName.ToLower());
+            var user = _context.AppUsers.FirstOrDefault(u => u.UserName.ToLower() == userLoginDTO.UserName.ToLower());
 
             if (user == null || !await _userManager.CheckPasswordAsync(user, userLoginDTO.Password))
             {
@@ -141,6 +141,34 @@ namespace Valiny.Repositorio
             };
         }
 
+        public async Task<UserDTO> RegisterAsync(UserRegisterDTO userRegisterDTO)
+        {
+            AppUser user = new AppUser()
+            {
+                UserName = userRegisterDTO.UserName,
+                Email = userRegisterDTO.UserName,
+                NormalizedEmail = userRegisterDTO.UserName.ToUpper(),
+
+            };
+            var result = await _userManager.CreateAsync(user, userRegisterDTO.Password);
+
+            if (result.Succeeded)
+            {
+                if (!_roleManager.RoleExistsAsync("admin").GetAwaiter().GetResult())
+                {
+                    await _roleManager.CreateAsync(new IdentityRole("admin"));
+                    await _roleManager.CreateAsync(new IdentityRole("registrado"));
+                }
+
+                await _userManager.AddToRoleAsync(user, "registrado");
+
+                var userReturn = _context.AppUser.FirstOrDefault(u => u.UserName == userRegisterDTO.UserName);
+                return _mapper.Map<UserDTO>(userReturn);
+            }
+
+            return new UserDTO();
+        }
     }
+}
            
-    }
+    

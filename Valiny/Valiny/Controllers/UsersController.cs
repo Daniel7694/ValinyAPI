@@ -63,6 +63,7 @@ namespace Valiny.Controllers
             var itemUsuarioDto = _mapper.Map<UserDTO>(itemUsuario);
             return Ok(itemUsuarioDto);
         }
+        
 
 
 

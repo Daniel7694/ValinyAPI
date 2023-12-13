@@ -18,6 +18,7 @@ namespace Valiny.Data
             // Aquí puedes configurar las relaciones y claves foráneas como en tu script SQL
             // Por ejemplo:
             base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Registro>()
                 .HasOne(ca => ca.Administrativo)
                 .WithMany(f => f.Registro)
@@ -71,6 +72,8 @@ namespace Valiny.Data
         public DbSet<Estudiante> Estudiantes { get; set; }
         public DbSet<Registro> Registros { get; set; }
         public DbSet<Rol> Rols { get; set; }
-        public DbSet<AppUser> AppUser { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
+        public object AppUser { get; internal set; }
     }
 }
+

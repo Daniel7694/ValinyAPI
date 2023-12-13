@@ -12,8 +12,8 @@ using Valiny.Data;
 namespace Valiny.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231212193420_Identity")]
-    partial class Identity
+    [Migration("20231213044549_security")]
+    partial class security
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -274,6 +274,13 @@ namespace Valiny.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Contrasenia")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Documento")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
