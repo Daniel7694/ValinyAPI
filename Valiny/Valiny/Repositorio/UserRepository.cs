@@ -162,7 +162,7 @@ namespace Valiny.Repositorio
 
                 await _userManager.AddToRoleAsync(user, "registrado");
 
-                var userReturn = _context.AppUser.FirstOrDefault(u => u.UserName == userRegisterDTO.UserName);
+                var userReturn = _context.AppUsers.FirstOrDefault(u => u.UserName == userRegisterDTO.UserName);
                 return _mapper.Map<UserDTO>(userReturn);
             }
 
